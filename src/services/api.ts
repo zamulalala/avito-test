@@ -1,7 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { Advertisement, Order } from '../types';
 
-const API_URL = 'http://localhost:3000';
+const isGitHubPages = window.location.hostname.includes('github.io');
+
+const API_URL = isGitHubPages
+  ? 'https://my-json-server.typicode.com/zamulalala/avito-test'
+  : 'http://localhost:3000';
 // const API_KEY = import.meta.env.VITE_API_KEY;
 
 const api = axios.create({
