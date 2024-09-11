@@ -388,7 +388,7 @@ function AdvertisementsPage() {
           </>
         )}
         <CustomPagination
-          count={Math.max(1, Math.ceil(filteredAdvertisements.length / itemsPerPage))}
+          count={Math.ceil(filteredAdvertisements.length / itemsPerPage)}
           page={page}
           onChange={(_, value) => setPage(value)}
         />
@@ -430,7 +430,7 @@ function AdvertisementsPage() {
             />
             <TextField
               fullWidth
-              label="Описние (необязательно)"
+              label="Описание (необязательно)"
               value={newAd.description || ""}
               onChange={(e) =>
                 setNewAd({ ...newAd, description: e.target.value })

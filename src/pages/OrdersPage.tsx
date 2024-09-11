@@ -293,7 +293,7 @@ function OrdersPage() {
                 >
                   <Typography variant="h6" align="center">
                     {selectedAdId
-                      ? "Заказов с выбранным товаром не найдено"
+                      ? "Заказов с выбранным товар��м не найдено"
                       : "Заказов не найдено"}
                   </Typography>
                   {selectedAdId && (

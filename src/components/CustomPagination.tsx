@@ -11,6 +11,10 @@ const CustomPagination: React.FC<CustomPaginationProps> = ({ count, page, onChan
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  if (count <= 1) {
+    return null; // Не отображаем пагинацию, если страница всего одна или меньше
+  }
+
   return (
     <Pagination
       variant="outlined"
