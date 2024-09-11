@@ -347,7 +347,7 @@ function AdvertisementsPage() {
               display: 'flex', 
               justifyContent: 'center', 
               alignItems: 'center', 
-              height: 'calc(100vh - 200px)', // Примерная высота, учитывающая верхние элементы
+              height: 'calc(100vh - 200px)',
             }}
           >
             <Loader />
@@ -370,28 +370,30 @@ function AdvertisementsPage() {
                 </Box>
               </Fade>
             ) : (
-              <CardGrid itemCount={paginatedAdvertisements.length}>
-                {paginatedAdvertisements.map((ad) => (
-                  <AdvertisementCard
-                    key={ad.id}
-                    ad={ad}
-                    onAdClick={handleAdClick}
-                    onOrdersClick={handleOrdersClick}
-                    onDeleteClick={handleDeleteAd}
-                    canDeleteAd={canDeleteAd}
-                    getImageSource={getImageSource}
-                    handleImageError={handleImageError}
-                  />
-                ))}
-              </CardGrid>
+              <>
+                <CardGrid itemCount={paginatedAdvertisements.length}>
+                  {paginatedAdvertisements.map((ad) => (
+                    <AdvertisementCard
+                      key={ad.id}
+                      ad={ad}
+                      onAdClick={handleAdClick}
+                      onOrdersClick={handleOrdersClick}
+                      onDeleteClick={handleDeleteAd}
+                      canDeleteAd={canDeleteAd}
+                      getImageSource={getImageSource}
+                      handleImageError={handleImageError}
+                    />
+                  ))}
+                </CardGrid>
+              </>
             )}
+            <CustomPagination
+              count={Math.max(1, Math.ceil(filteredAdvertisements.length / itemsPerPage))}
+              page={page}
+              onChange={(_, value) => setPage(value)}
+            />
           </>
         )}
-        <CustomPagination
-          count={Math.ceil(filteredAdvertisements.length / itemsPerPage)}
-          page={page}
-          onChange={(_, value) => setPage(value)}
-        />
         <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <Box
             sx={{

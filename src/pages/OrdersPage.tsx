@@ -273,12 +273,10 @@ function OrdersPage() {
           )}
         </Box>
   
-        {/* Прелоадер показывается, пока идет загрузка */}
         {isLoading ? (
           <Loader />
         ) : (
           <>
-            {/* Показываем сообщение "Заказов не найдено", если заказы не были найдены */}
             {filteredOrders.length === 0 ? (
               <Fade in={true}>
                 <Box 
@@ -293,7 +291,7 @@ function OrdersPage() {
                 >
                   <Typography variant="h6" align="center">
                     {selectedAdId
-                      ? "Заказов с выбранным товар��м не найдено"
+                      ? "Заказов с выбранным товаром не найдено"
                       : "Заказов не найдено"}
                   </Typography>
                   {selectedAdId && (
@@ -323,14 +321,13 @@ function OrdersPage() {
                 ))}
               </CardGrid>
             )}
+            <CustomPagination
+              count={Math.max(1, Math.ceil(filteredOrders.length / ordersPerPage))}
+              page={page}
+              onChange={handlePageChange}
+            />
           </>
         )}
-  
-        <CustomPagination
-          count={Math.ceil(filteredOrders.length / ordersPerPage)}
-          page={page}
-          onChange={handlePageChange}
-        />
   
         <Modal open={isModalOpen} onClose={handleCloseModal}>
           <Box
